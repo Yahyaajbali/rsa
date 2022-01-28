@@ -47,6 +47,7 @@ def gen_prime_pair(length):
         q = gen_prime(length)
         if p != q:
             return p, q
+
 key_length = int(input("Enter key length: "))
 two_primes = gen_prime_pair(key_length)
 
@@ -68,7 +69,15 @@ e = gen_e(phi) #e
 
 #private key
 k = 2#randrange(1, phi)
-d = (1 + k * phi) / e
+#d = (1 + k * phi) / e          #issue here, should use extended euclidean algorithm to find d
+#extended euclidean algorithm to find d??? thank you reddit and copilot??
+def gen_d(e, phi):
+    d = 1
+    while d * e % phi != 1:
+        d += 1
+    return d
+
+d = gen_d(e, phi)
 #private key is d
 
 #message to encrypt
@@ -80,7 +89,7 @@ coded_message = int(message)
 
 #encrypt 
 def encrypt(coded_message, n, e):
-    c = pow(int(coded_message), e, n) 
+    c = pow(int(coded_message), e, n)  #c = coded_message ** e % n
     return c
 
 encrypted_message = encrypt(coded_message, n, e)
