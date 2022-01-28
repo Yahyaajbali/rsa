@@ -95,4 +95,4 @@ decrypted_message = decrypt(encrypted_message, d, n)
 
 print("original message: " + message)
 print("encrypted message: " + str(encrypted_message))
-print("decrypted coded message: " + str(decrypted_message))
+print("decrypted message: " + str(decrypted_message))
