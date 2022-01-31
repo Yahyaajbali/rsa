@@ -68,16 +68,21 @@ e = gen_e(phi) #e
 #public key is n and e
 
 #private key
-k = 2#randrange(1, phi)
-#d = (1 + k * phi) / e          #issue here, should use extended euclidean algorithm to find d
-#extended euclidean algorithm to find d??? thank you reddit and copilot??
+k = 2#randrange(1, phi)   // ignore this line
+#d = (1 + k * phi) / e          
+
+#d ==> d*e % phi = 1, thank you eddie woo from youtube
+
 def gen_d(e, phi):
     d = 1
-    while d * e % phi != 1:
+    while d * e % phi != 1:     #issue specifically here, mod is division, division is expensive, number is huge, it takes forever
         d += 1
+        #print(d)
     return d
 
 d = gen_d(e, phi)
+
+
 #private key is d
 
 #message to encrypt
